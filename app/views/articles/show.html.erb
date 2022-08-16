@@ -1,8 +1,19 @@
-<h1>Article</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 p-2">
+  <div class="container-fluid">
+    <%= link_to "Wikinimous", articles_path, class: "navbar-brand"%>
 
-<h2><%= @article.title %></h2>
-<p><%= @article.content %></p>
+    <%= link_to "New Article", new_article_path, class: "btn btn-outline-secondary"%>
+  </div>
+</nav>
 
-<%= link_to "Edit this article", edit_article_path(@article) %>
+<div class="container text-start">
+  <div class="d-inline">
+    <h2 class="d-inline"><%= @article.title %></h2>
+    <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_article_path(@article) %>
+    <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, article_path(@article), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to DELETE this Task?"} %>
+  </div>
+  <hr>
+  <p><%= @article.content %></p>
+</div>
+
 <%= link_to "Back to All Articles", articles_path %>
-<%= link_to "DELETE", article_path(@article), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to DELETE this Task?"} %>
